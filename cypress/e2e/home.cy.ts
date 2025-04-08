@@ -1,10 +1,7 @@
 /// <reference types="cypress" />
+import { runTestsForViewports } from "../support/viewport-config";
 
-describe("Home Page Tests", () => {
-  beforeEach(() => {
-    cy.visit("/");
-  });
-
+runTestsForViewports("Home Page Tests", () => {
   it("should load the home page successfully", () => {
     cy.url().should("eq", `${Cypress.config().baseUrl}/`);
   });
@@ -26,7 +23,6 @@ describe("Home Page Tests", () => {
   });
 
   it("should have working navigation links", () => {
-    // Example: Check if navigation links are present and clickable
     cy.get("nav a").each(($link) => {
       cy.wrap($link).should("be.visible");
       cy.wrap($link).should("have.attr", "href");
